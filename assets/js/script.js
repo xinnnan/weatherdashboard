@@ -45,9 +45,6 @@ var displayWeather = function(weather, searchCity){
    var currentDate = document.createElement("span")
    currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
    citySearchInputEl.appendChild(currentDate);
-   var weatherIcon = document.createElement("img")
-   weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
-   citySearchInputEl.appendChild(weatherIcon);
    var temperatureEl = document.createElement("span");
    temperatureEl.textContent = "Temperature: " + Math.round((weather.main.temp-32)*5/9) + " °C";
    temperatureEl.classList = "list-group-item"
