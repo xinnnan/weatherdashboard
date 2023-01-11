@@ -1,9 +1,6 @@
 localStorage.clear();
 var APIKey="65268c68694b0c9b8ef9a3e888f3be6b";
-var city;
-
 var cities = [];
-
 var cityFormEl=document.querySelector("#city-search-form");
 var cityInputEl=document.querySelector("#city");
 var weatherContainerEl=document.querySelector("#current-weather-container");
@@ -101,31 +98,25 @@ var display5Day = function(weather){
        weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
 
        forecastEl.appendChild(weatherIcon);
-
+       
        var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body text-center";
        forecastTempEl.textContent = (dailyForecast.main.temp-32)*5/9 + " °C";
-
-
-        forecastEl.appendChild(forecastTempEl);
+       forecastEl.appendChild(forecastTempEl);
 
        var forecastHumEl=document.createElement("span");
        forecastHumEl.classList = "card-body text-center";
        forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
 
-       //append to forecast card
        forecastEl.appendChild(forecastHumEl);
 
-        // console.log(forecastEl);
-       //append to five day container
         forecastContainerEl.appendChild(forecastEl);
     }
 
 }
 
 var pastSearch = function(pastSearch){
- 
-    // console.log(pastSearch)
+
 
     pastSearchEl = document.createElement("button");
     pastSearchEl.textContent = pastSearch;
@@ -144,8 +135,5 @@ var pastSearchHandler = function(event){
         get5Day(city);
     }
 }
-
-// pastSearch();
-
 cityFormEl.addEventListener("submit", formSumbitHandler);
 pastSearchButtonEl.addEventListener("click", pastSearchHandler);
