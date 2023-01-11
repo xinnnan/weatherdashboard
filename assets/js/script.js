@@ -43,84 +43,30 @@ var getCityWeather = function(city){
 };
 
 var displayWeather = function(weather, searchCity){
-   //clear old content
    weatherContainerEl.textContent= "";  
    citySearchInputEl.textContent=searchCity;
-
-   //console.log(weather);
-
-   //create date element
    var currentDate = document.createElement("span")
    currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
    citySearchInputEl.appendChild(currentDate);
-
-   //create an image element
    var weatherIcon = document.createElement("img")
    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
    citySearchInputEl.appendChild(weatherIcon);
-
-   //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
    temperatureEl.textContent = "Temperature: " + Math.round((weather.main.temp-32)*5/9) + " °C";
    temperatureEl.classList = "list-group-item"
-  
-   //create a span element to hold Humidity data
+
    var humidityEl = document.createElement("span");
    humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
    humidityEl.classList = "list-group-item"
-
-   //create a span element to hold Wind data
    var windSpeedEl = document.createElement("span");
    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
    windSpeedEl.classList = "list-group-item"
 
-   //append to container
+
    weatherContainerEl.appendChild(temperatureEl);
-
-   //append to container
    weatherContainerEl.appendChild(humidityEl);
-
-   //append to container
    weatherContainerEl.appendChild(windSpeedEl);
-
-   var lat = weather.coord.lat;
-   var lon = weather.coord.lon;
-   getUvIndex(lat,lon)
 }
-
-var getUvIndex = function(lat,lon){
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city + "&appid=" + APIKey;
-    fetch(queryURL)
-    .then(function(response){
-        response.json().then(function(data){
-            displayUvIndex(data)
-        });
-    });
-}
- 
-var displayUvIndex = function(index){
-    var uvIndexEl = document.createElement("div");
-    uvIndexEl.textContent = "UV Index: "
-    uvIndexEl.classList = "list-group-item"
-
-    uvIndexValue = document.createElement("span")
-    uvIndexValue.textContent = index.value
-
-    if(index.value <=2){
-        uvIndexValue.classList = "favorable"
-    }else if(index.value >2 && index.value<=8){
-        uvIndexValue.classList = "moderate "
-    }
-    else if(index.value >8){
-        uvIndexValue.classList = "severe"
-    };
-
-    uvIndexEl.appendChild(uvIndexValue);
-
-    //append index to current weather
-    weatherContainerEl.appendChild(uvIndexEl);
-}
-
 var get5Day = function(city){
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`
 
@@ -144,29 +90,23 @@ var display5Day = function(weather){
        var forecastEl=document.createElement("div");
        forecastEl.classList = "card bg-primary text-light m-2";
 
-       //console.log(dailyForecast)
-
-       //create date element
        var forecastDate = document.createElement("h5")
        forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
        forecastDate.classList = "card-header text-center"
        forecastEl.appendChild(forecastDate);
 
-       
-       //create an image element
+
        var weatherIcon = document.createElement("img")
        weatherIcon.classList = "card-body text-center";
        weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
 
-       //append to forecast card
        forecastEl.appendChild(weatherIcon);
-       
-       //create temperature span
+
        var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body text-center";
        forecastTempEl.textContent = (dailyForecast.main.temp-32)*5/9 + " °C";
 
-        //append to forecast card
+
         forecastEl.appendChild(forecastTempEl);
 
        var forecastHumEl=document.createElement("span");
