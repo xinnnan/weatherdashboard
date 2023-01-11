@@ -61,7 +61,7 @@ var displayWeather = function(weather, searchCity){
 
    //create a span element to hold temperature data
    var temperatureEl = document.createElement("span");
-   temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
+   temperatureEl.textContent = "Temperature: " + Math.round((weather.main.temp-32)*5/9) + " °C";
    temperatureEl.classList = "list-group-item"
   
    //create a span element to hold Humidity data
@@ -89,16 +89,13 @@ var displayWeather = function(weather, searchCity){
 }
 
 var getUvIndex = function(lat,lon){
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+ city + "&appid=" + APIKey;
     fetch(queryURL)
     .then(function(response){
         response.json().then(function(data){
             displayUvIndex(data)
-           // console.log(data)
         });
     });
-    //console.log(lat);
-    //console.log(lon);
 }
  
 var displayUvIndex = function(index){
@@ -167,7 +164,7 @@ var display5Day = function(weather){
        //create temperature span
        var forecastTempEl=document.createElement("span");
        forecastTempEl.classList = "card-body text-center";
-       forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+       forecastTempEl.textContent = (dailyForecast.main.temp-32)*5/9 + " °C";
 
         //append to forecast card
         forecastEl.appendChild(forecastTempEl);
