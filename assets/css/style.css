@@ -4,26 +4,9 @@
 }
 
 .list-group-item{
-    line-height: 0.5;
+    line-height: 2;
     border: none;
 }
 .card-body{
     flex:auto
-}
-
-span.severe{
-    padding: 3px;
-    background-color:	#a9d4e4;
-    color:white;
-}
-
-span.moderate{
-    padding: 3px;
-    background-color:	#a9d4e4;
-}
-
-span.favorable{
-    padding: 3px;
-    background-color:	#a9d4e4;
-    color:white;
 }
