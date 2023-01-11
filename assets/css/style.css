@@ -1,6 +1,6 @@
 
 .search-column{
-    background-color:	#D3D3D3;
+    background-color:	#a9d4e4;
 }
 
 .list-group-item{
@@ -13,17 +13,17 @@
 
 span.severe{
     padding: 3px;
-    background-color: red;
+    background-color:	#a9d4e4;
     color:white;
 }
 
 span.moderate{
     padding: 3px;
-    background-color: yellow;
+    background-color:	#a9d4e4;
 }
 
 span.favorable{
     padding: 3px;
-    background-color: green;
+    background-color:	#a9d4e4;
     color:white;
 }
